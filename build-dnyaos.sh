@@ -16,6 +16,16 @@ export DEBIAN_FRONTEND=noninteractive
 apt-get update
 apt-get install -y live-build debootstrap squashfs-tools xorriso git ca-certificates
 
+# Debian's live-build package currently looks for Contents-amd64.gz one level too high.
+# The Debian archive stores it under the main component, so patch both URL templates.
+LIVE_BUILD_KERNEL_HELPER=/usr/lib/live/build/lb_chroot_linux-image
+if [[ -f "$LIVE_BUILD_KERNEL_HELPER" ]]; then
+  sed -i \
+    -e 's@/dists/${LB_PARENT_DISTRIBUTION}/Contents-@/dists/${LB_PARENT_DISTRIBUTION}/main/Contents-@g' \
+    -e 's@/dists/${LB_DISTRIBUTION}/Contents-@/dists/${LB_DISTRIBUTION}/main/Contents-@g' \
+    "$LIVE_BUILD_KERNEL_HELPER"
+fi
+
 echo "Preparing clean build configuration..."
 mkdir -p out
 lb clean --purge || true
