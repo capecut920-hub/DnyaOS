@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=DnyaOS
+Comment=Dark blue and cyan GTK theme with red accents
+Type=X-GNOME-Metatheme
+GtkTheme=DnyaOS
+IconTheme=Papirus-Dark
+CursorTheme=Adwaita
