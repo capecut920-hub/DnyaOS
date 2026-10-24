@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+concurrency:
+  group: dnyaos-iso-build
+  cancel-in-progress: true
 permissions:
   contents: read
 jobs:
