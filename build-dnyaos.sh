@@ -14,7 +14,21 @@ fi
 echo "Installing live-build and required tools..."
 export DEBIAN_FRONTEND=noninteractive
 apt-get update
-apt-get install -y live-build debootstrap squashfs-tools xorriso git ca-certificates
+apt-get install -y live-build debootstrap squashfs-tools xorriso git ca-certificates isolinux syslinux-common
+
+# Some Ubuntu-hosted live-build versions look for these BIOS boot files in
+# /root/isolinux. Install their providers and place the exact files there.
+mkdir -p /root/isolinux
+test -s /usr/lib/ISOLINUX/isolinux.bin || {
+  echo "Missing /usr/lib/ISOLINUX/isolinux.bin (package: isolinux)" >&2
+  exit 1
+}
+test -s /usr/lib/syslinux/modules/bios/vesamenu.c32 || {
+  echo "Missing /usr/lib/syslinux/modules/bios/vesamenu.c32 (package: syslinux-common)" >&2
+  exit 1
+}
+install -m 0644 /usr/lib/ISOLINUX/isolinux.bin /root/isolinux/isolinux.bin
+install -m 0644 /usr/lib/syslinux/modules/bios/vesamenu.c32 /root/isolinux/vesamenu.c32
 
 # Debian's live-build package currently looks for Contents-amd64.gz one level too high.
 # The Debian archive stores it under the main component, so patch both URL templates.
@@ -40,8 +54,8 @@ lb config \
   --binary-images iso-hybrid \
   --debian-installer false \
   --archive-areas "main contrib non-free-firmware" \
-  --firmware-chroot false \
-  --firmware-binary false \
+  --firmware-chroot true \
+  --firmware-binary true \
   --security false \
   --apt-recommends true \
   --iso-application "DnyaOS Live" \
@@ -65,6 +79,8 @@ cp theme/wallpaper.svg config/includes.chroot/usr/share/backgrounds/dnyaos/wallp
 cp theme/xfce4-desktop.xml config/includes.chroot/etc/skel/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml
 cp theme/xsettings.xml config/includes.chroot/etc/skel/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
 cp launchers/*.desktop config/includes.chroot/usr/share/applications/
+cp launchers/*.desktop config/includes.chroot/etc/skel/Desktop/
+chmod 0755 config/includes.chroot/etc/skel/Desktop/*.desktop
 
 lb build
 test -s live-image-amd64.hybrid.iso
