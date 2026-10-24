@@ -72,8 +72,9 @@ cp package-lists/dnyaos.list.chroot config/package-lists/dnyaos.list.chroot
 cp config-templates/dnyaos-security.list.chroot config/archives/dnyaos-security.list.chroot
 cp app/dnyaos-birthday config/includes.chroot/usr/local/bin/dnyaos-birthday
 chmod 0755 config/includes.chroot/usr/local/bin/dnyaos-birthday
-cp app/dnyaos-birthday.desktop config/includes.chroot/usr/share/applications/
-cp app/dnyaos-birthday.desktop config/includes.chroot/etc/skel/Desktop/
+cp app/dnyaos-birthday.desktop app/dnyaos-birthday-preview.desktop config/includes.chroot/usr/share/applications/
+cp app/dnyaos-birthday.desktop app/dnyaos-birthday-preview.desktop config/includes.chroot/etc/skel/Desktop/
+cp theme/index.theme config/includes.chroot/usr/share/themes/DnyaOS/index.theme
 cp theme/gtk.css config/includes.chroot/usr/share/themes/DnyaOS/gtk-3.0/gtk.css
 cp theme/wallpaper.svg config/includes.chroot/usr/share/backgrounds/dnyaos/wallpaper.svg
 cp theme/xfce4-desktop.xml config/includes.chroot/etc/skel/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml
