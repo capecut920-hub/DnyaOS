@@ -1,6 +1,9 @@
 name: Build DnyaOS ISO
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
 permissions:
   contents: read
 jobs:
