@@ -8,6 +8,14 @@ xfce4-settings
 xfce4-panel
 xfce4-whiskermenu-plugin
 xfce4-goodies
+xfce4-power-manager
+xfce4-notifyd
+xfce4-screenshooter
+mousepad
+ristretto
+file-roller
+gvfs-backends
+udisks2
 network-manager
 network-manager-gnome
 pipewire
