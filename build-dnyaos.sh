@@ -16,20 +16,6 @@ export DEBIAN_FRONTEND=noninteractive
 apt-get update
 apt-get install -y live-build debootstrap squashfs-tools xorriso git ca-certificates isolinux syslinux-common
 
-# Some Ubuntu-hosted live-build versions look for these BIOS boot files in
-# /root/isolinux. Install their providers and place the exact files there.
-mkdir -p /root/isolinux
-test -s /usr/lib/ISOLINUX/isolinux.bin || {
-  echo "Missing /usr/lib/ISOLINUX/isolinux.bin (package: isolinux)" >&2
-  exit 1
-}
-test -s /usr/lib/syslinux/modules/bios/vesamenu.c32 || {
-  echo "Missing /usr/lib/syslinux/modules/bios/vesamenu.c32 (package: syslinux-common)" >&2
-  exit 1
-}
-install -m 0644 /usr/lib/ISOLINUX/isolinux.bin /root/isolinux/isolinux.bin
-install -m 0644 /usr/lib/syslinux/modules/bios/vesamenu.c32 /root/isolinux/vesamenu.c32
-
 # Debian's live-build package currently looks for Contents-amd64.gz one level too high.
 # The Debian archive stores it under the main component, so patch both URL templates.
 LIVE_BUILD_KERNEL_HELPER=/usr/lib/live/build/lb_chroot_linux-image
@@ -43,6 +29,21 @@ fi
 echo "Preparing clean build configuration..."
 mkdir -p out
 lb clean --purge || true
+
+# live-build's purge step may remove /root/isolinux, so stage the BIOS boot
+# files only after cleaning and immediately before configuration/build.
+mkdir -p /root/isolinux
+test -s /usr/lib/ISOLINUX/isolinux.bin || {
+  echo "Missing /usr/lib/ISOLINUX/isolinux.bin (package: isolinux)" >&2
+  exit 1
+}
+test -s /usr/lib/syslinux/modules/bios/vesamenu.c32 || {
+  echo "Missing /usr/lib/syslinux/modules/bios/vesamenu.c32 (package: syslinux-common)" >&2
+  exit 1
+}
+install -m 0644 /usr/lib/ISOLINUX/isolinux.bin /root/isolinux/isolinux.bin
+install -m 0644 /usr/lib/syslinux/modules/bios/vesamenu.c32 /root/isolinux/vesamenu.c32
+
 lb config \
   --mode debian \
   --distribution trixie \
