@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Preview Birthday Screen
+Comment=Preview the DnyaOS birthday greeting any day
+Exec=/usr/local/bin/dnyaos-birthday --preview
+Icon=applications-games
+Terminal=false
+Categories=Utility;
