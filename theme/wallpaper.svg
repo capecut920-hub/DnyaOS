@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+<defs>
+ <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#070b12"/><stop offset=".55" stop-color="#111c2a"/><stop offset="1" stop-color="#07131d"/></linearGradient>
+ <linearGradient id="blue"><stop stop-color="#1265d8"/><stop offset="1" stop-color="#35d5ff"/></linearGradient>
+ <pattern id="grid" width="64" height="64" patternUnits="userSpaceOnUse"><path d="M64 0H0V64" fill="none" stroke="#1b4763" stroke-width="1" opacity=".25"/></pattern>
+</defs>
+<rect width="1920" height="1080" fill="url(#bg)"/><rect width="1920" height="1080" fill="url(#grid)"/>
+<path d="M-100 850 L650 300 L1060 300 L420 1080 H-100Z" fill="#0b2237" opacity=".75"/>
+<path d="M900 1080 L1530 0 H1660 L1110 1080Z" fill="url(#blue)" opacity=".65"/>
+<path d="M1190 1080 L1770 0 H1810 L1260 1080Z" fill="#e52b43" opacity=".85"/>
+<path d="M1350 1080 L1920 30 V160 L1450 1080Z" fill="#20bfff" opacity=".5"/>
+<text x="110" y="430" fill="#edf6ff" font-family="DejaVu Sans, sans-serif" font-size="118" font-weight="700" letter-spacing="5">DnyaOS</text>
+<text x="120" y="500" fill="#67e2ff" font-family="DejaVu Sans, sans-serif" font-size="29" letter-spacing="9">DRIVE YOUR DIGITAL WORLD</text>
+<rect x="120" y="550" width="170" height="7" rx="3" fill="#e52b43"/><rect x="300" y="550" width="310" height="7" rx="3" fill="#20bfff"/>
+</svg>
