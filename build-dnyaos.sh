@@ -32,6 +32,7 @@ lb clean --purge || true
 lb config \
   --mode debian \
   --distribution trixie \
+  --initsystem systemd \
   --mirror-bootstrap https://deb.debian.org/debian \
   --mirror-chroot https://deb.debian.org/debian \
   --mirror-binary https://deb.debian.org/debian \
