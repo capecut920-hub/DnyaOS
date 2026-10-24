@@ -17,6 +17,14 @@ jobs:
         run: |
           chmod +x ./build-dnyaos.sh
           sudo bash ./build-dnyaos.sh
+      - name: Validate ISO and checksum
+        run: |
+          set -euo pipefail
+          test -s out/DnyaOS-live-amd64.iso
+          test -s out/DnyaOS-live-amd64.iso.sha256
+          sha256sum -c out/DnyaOS-live-amd64.iso.sha256
+          xorriso -indev out/DnyaOS-live-amd64.iso -toc
+          xorriso -indev out/DnyaOS-live-amd64.iso -report_el_torito plain
       - name: Upload ISO and checksum
         uses: actions/upload-artifact@v4
         with:
