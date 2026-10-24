@@ -1,0 +1,52 @@
+#!/usr/bin/env python3
+import argparse
+import datetime
+import tkinter as tk
+from tkinter import ttk
+
+GREETING = (
+    "Happy Birthday, Dnyanada! 🎂\n"
+    "Another year. Another adventure.\n"
+    "BMW vibes × Ladybug magic\n"
+    "DnyaOS Birthday Edition · 26 October"
+)
+
+def main():
+    parser = argparse.ArgumentParser(description="DnyaOS Birthday Edition")
+    parser.add_argument("--preview", action="store_true", help="preview regardless of date")
+    args = parser.parse_args()
+    today = datetime.date.today()
+    if not args.preview and (today.month, today.day) != (10, 26):
+        root = tk.Tk()
+        root.title("DnyaOS Birthday")
+        root.configure(bg="#10151d")
+        root.geometry("560x220")
+        tk.Label(root, text="Birthday screen is date-locked", bg="#10151d",
+                 fg="#eaf5ff", font=("DejaVu Sans", 17, "bold")).pack(pady=(30, 10))
+        tk.Label(root, text="Use the preview option to view it before 26 October.",
+                 bg="#10151d", fg="#67d8ff", font=("DejaVu Sans", 11)).pack(pady=5)
+        ttk.Button(root, text="Preview birthday screen",
+                   command=lambda: (root.destroy(), show_greeting())).pack(pady=15)
+        root.mainloop()
+        return
+    show_greeting()
+
+def show_greeting():
+    root = tk.Tk()
+    root.title("DnyaOS Birthday Edition")
+    root.geometry("760x440")
+    root.minsize(600, 360)
+    root.configure(bg="#0b1018")
+    tk.Frame(root, bg="#e52b43", height=5).pack(fill="x")
+    tk.Label(root, text="DnyaOS", bg="#0b1018", fg="#55cfff",
+             font=("DejaVu Sans", 16, "bold")).pack(pady=(30, 8))
+    tk.Label(root, text=GREETING, bg="#0b1018", fg="#f2f7ff",
+             font=("DejaVu Sans", 18, "bold"), justify="center",
+             wraplength=700).pack(expand=True, padx=24)
+    tk.Label(root, text="BLUE • BLACK • RED", bg="#0b1018", fg="#e52b43",
+             font=("DejaVu Sans", 10, "bold")).pack(pady=(0, 22))
+    ttk.Button(root, text="Close", command=root.destroy).pack(pady=(0, 18))
+    root.mainloop()
+
+if __name__ == "__main__":
+    main()
