@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=DnyaOS Birthday Edition
+Comment=Birthday greeting for Dnyanada
+Exec=/usr/local/bin/dnyaos-birthday --preview
+Icon=applications-games
+Terminal=false
+Categories=Utility;
