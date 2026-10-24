@@ -22,6 +22,9 @@ lb clean --purge || true
 lb config \
   --mode debian \
   --distribution trixie \
+  --mirror-bootstrap https://deb.debian.org/debian \
+  --mirror-chroot https://deb.debian.org/debian \
+  --mirror-binary https://deb.debian.org/debian \
   --architectures amd64 \
   --binary-images iso-hybrid \
   --debian-installer false \
