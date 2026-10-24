@@ -39,6 +39,8 @@ lb config \
   --binary-images iso-hybrid \
   --debian-installer false \
   --archive-areas "main contrib non-free-firmware" \
+  --firmware-chroot false \
+  --firmware-binary false \
   --security false \
   --apt-recommends true \
   --iso-application "DnyaOS Live" \
