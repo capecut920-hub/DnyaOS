@@ -32,13 +32,14 @@ lb config \
   --iso-publisher "DnyaOS Project" \
   --iso-volume "DNYAOS_LIVE"
 
-mkdir -p config/package-lists config/includes.chroot/etc/skel/Desktop config/includes.chroot/usr/local/bin \
+mkdir -p config/package-lists config/archives config/includes.chroot/etc/skel/Desktop config/includes.chroot/usr/local/bin \
   config/includes.chroot/usr/share/applications \
   config/includes.chroot/usr/share/backgrounds/dnyaos \
   config/includes.chroot/usr/share/themes/DnyaOS/gtk-3.0 \
   config/includes.chroot/etc/skel/.config/xfce4/xfconf/xfce-perchannel-xml
 
 cp package-lists/dnyaos.list.chroot config/package-lists/dnyaos.list.chroot
+cp config-templates/dnyaos-security.list.chroot config/archives/dnyaos-security.list.chroot
 cp app/dnyaos-birthday config/includes.chroot/usr/local/bin/dnyaos-birthday
 chmod 0755 config/includes.chroot/usr/local/bin/dnyaos-birthday
 cp app/dnyaos-birthday.desktop config/includes.chroot/usr/share/applications/
