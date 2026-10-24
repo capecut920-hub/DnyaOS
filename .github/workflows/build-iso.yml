@@ -1,0 +1,31 @@
+name: Build DnyaOS ISO
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: debian:trixie
+    timeout-minutes: 180
+    steps:
+      - name: Install GitHub Actions runtime prerequisites
+        run: |
+          apt-get update
+          apt-get install -y ca-certificates git nodejs
+      - name: Check out source
+        uses: actions/checkout@v4
+      - name: Build bootable ISO
+        run: |
+          chmod +x ./build-dnyaos.sh
+          bash ./build-dnyaos.sh
+      - name: Upload ISO and checksum
+        uses: actions/upload-artifact@v4
+        with:
+          name: DnyaOS-live-amd64
+          path: |
+            out/DnyaOS-live-amd64.iso
+            out/DnyaOS-live-amd64.iso.sha256
+          if-no-files-found: error
+          retention-days: 7
