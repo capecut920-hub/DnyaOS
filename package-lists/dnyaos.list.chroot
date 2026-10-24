@@ -13,6 +13,7 @@ network-manager-gnome
 pipewire
 wireplumber
 pavucontrol
+python3-tk
 fonts-dejavu
 fonts-noto-core
 fonts-noto-color-emoji
