@@ -1,0 +1,14 @@
+/* DnyaOS dark theme accents: original styling, not BMW/Ladybug trademarks */
+@define-color dnya_bg #0b1018;
+@define-color dnya_panel #111a27;
+@define-color dnya_blue #20bfff;
+@define-color dnya_cyan #67e2ff;
+@define-color dnya_red #e52b43;
+@define-color dnya_text #edf6ff;
+
+window, .background { background-color: @dnya_bg; color: @dnya_text; }
+headerbar, .titlebar { background-color: @dnya_panel; color: @dnya_text; }
+button { background-image: none; background-color: #182638; color: @dnya_text; border: 1px solid #245a7a; border-radius: 6px; }
+button:hover { background-color: #203a52; border-color: @dnya_cyan; }
+entry, textview, treeview { background-color: #0f1824; color: @dnya_text; }
+selection { background-color: @dnya_blue; color: #061019; }
