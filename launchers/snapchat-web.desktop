@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Snapchat Web
+Comment=Open Snapchat for Web in Firefox
+Exec=firefox-esr --new-window https://web.snapchat.com/
+Icon=web-browser
+Terminal=false
+Categories=Network;InstantMessaging;
