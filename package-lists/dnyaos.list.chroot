@@ -33,3 +33,5 @@ wget
 nano
 less
 htop
+# Required by live-build's BIOS/ISOLINUX theme when it dereferences bootloader symlinks inside the chroot.
+isolinux
