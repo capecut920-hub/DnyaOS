@@ -4,6 +4,14 @@ import datetime
 import tkinter as tk
 from tkinter import ttk
 
+BG = "#080d15"
+PANEL = "#111b29"
+BLUE = "#36cfff"
+CYAN = "#8beaff"
+RED = "#e52b43"
+WHITE = "#f3f8ff"
+MUTED = "#a8bed0"
+
 GREETING = (
     "Happy Birthday, Dnyanada! 🎂\n"
     "Another year. Another adventure.\n"
@@ -11,42 +19,72 @@ GREETING = (
     "DnyaOS Birthday Edition · 26 October"
 )
 
+def draw_ladybug(canvas, x, y, scale=1.0):
+    r = 34 * scale
+    canvas.create_oval(x-r-7, y-r-7, x+r+7, y+r+7, fill="#162536", outline=BLUE, width=2)
+    canvas.create_oval(x-r, y-r, x+r, y+r, fill=RED, outline="#ff8795", width=2)
+    canvas.create_line(x, y-r+4, x, y+r-4, fill="#090d14", width=max(2, int(3*scale)))
+    for dx, dy in [(-13,-12),(13,-12),(-17,10),(17,10),(-8,23),(8,23)]:
+        dot=4*scale
+        canvas.create_oval(x+dx*scale-dot,y+dy*scale-dot,x+dx*scale+dot,y+dy*scale+dot,fill="#090d14",outline="")
+    canvas.create_oval(x-10*scale,y-r-10*scale,x+10*scale,y-r+7*scale,fill="#090d14",outline=CYAN,width=1)
+    canvas.create_line(x-4*scale,y-r-7*scale,x-13*scale,y-r-18*scale,fill="#090d14",width=2)
+    canvas.create_line(x+4*scale,y-r-7*scale,x+13*scale,y-r-18*scale,fill="#090d14",width=2)
+
+def show_locked_screen():
+    root=tk.Tk()
+    root.title("DnyaOS Birthday Edition")
+    root.geometry("520x220")
+    root.configure(bg=BG)
+    root.resizable(False,False)
+    tk.Label(root,text="DnyaOS  /  BIRTHDAY EDITION",bg=BG,fg=BLUE,font=("DejaVu Sans",13,"bold")).pack(pady=(26,10))
+    tk.Label(root,text="The birthday greeting unlocks on 26 October.",bg=BG,fg=WHITE,font=("DejaVu Sans",12)).pack(pady=5)
+    tk.Label(root,text="Use “Preview Birthday Screen” to see it now.",bg=BG,fg=MUTED,font=("DejaVu Sans",10)).pack(pady=4)
+    ttk.Button(root,text="Close",command=root.destroy).pack(pady=16)
+    root.mainloop()
+
+def show_greeting():
+    root=tk.Tk()
+    root.title("DnyaOS Birthday Edition")
+    root.geometry("820x500")
+    root.minsize(640,420)
+    root.configure(bg=BG)
+    outer=tk.Frame(root,bg=BG,padx=2,pady=2)
+    outer.pack(fill="both",expand=True)
+    tk.Frame(outer,bg=RED,height=4).pack(fill="x")
+    header=tk.Frame(outer,bg=PANEL,padx=28,pady=16)
+    header.pack(fill="x")
+    tk.Label(header,text="DnyaOS",bg=PANEL,fg=CYAN,font=("DejaVu Sans",20,"bold")).pack(side="left")
+    tk.Label(header,text="BIRTHDAY EDITION  /  26 OCT",bg=PANEL,fg=MUTED,font=("DejaVu Sans",9,"bold")).pack(side="right")
+    hero=tk.Canvas(outer,bg=BG,highlightthickness=0,height=290)
+    hero.pack(fill="both",expand=True,padx=24,pady=(16,4))
+    hero.create_text(20,20,text="ANOTHER YEAR. ANOTHER ADVENTURE.",anchor="nw",fill=BLUE,font=("DejaVu Sans",10,"bold"))
+    draw_ladybug(hero,690,112,1.45)
+    hero.create_text(20,72,text="Happy Birthday, Dnyanada! 🎂",anchor="nw",fill=WHITE,font=("DejaVu Sans",24,"bold"))
+    hero.create_text(22,128,text="BMW vibes × Ladybug magic",anchor="nw",fill=CYAN,font=("DejaVu Sans",15,"bold"))
+    hero.create_text(22,172,text="DnyaOS Birthday Edition · 26 October",anchor="nw",fill=MUTED,font=("DejaVu Sans",11))
+    hero.create_line(20,222,610,222,fill="#25445b",width=2)
+    hero.create_line(20,222,150,222,fill=RED,width=3)
+    hero.create_line(150,222,300,222,fill=BLUE,width=3)
+    footer=tk.Frame(outer,bg=PANEL,padx=24,pady=14)
+    footer.pack(fill="x")
+    tk.Label(footer,text="BLUE  •  BLACK  •  RED",bg=PANEL,fg=RED,font=("DejaVu Sans",9,"bold")).pack(side="left")
+    ttk.Button(footer,text="Close",command=root.destroy).pack(side="right")
+    root.mainloop()
+
 def main():
-    parser = argparse.ArgumentParser(description="DnyaOS Birthday Edition")
-    parser.add_argument("--preview", action="store_true", help="preview regardless of date")
-    args = parser.parse_args()
-    today = datetime.date.today()
-    if not args.preview and (today.month, today.day) != (10, 26):
-        root = tk.Tk()
-        root.title("DnyaOS Birthday")
-        root.configure(bg="#10151d")
-        root.geometry("560x220")
-        tk.Label(root, text="Birthday screen is date-locked", bg="#10151d",
-                 fg="#eaf5ff", font=("DejaVu Sans", 17, "bold")).pack(pady=(30, 10))
-        tk.Label(root, text="Use the preview option to view it before 26 October.",
-                 bg="#10151d", fg="#67d8ff", font=("DejaVu Sans", 11)).pack(pady=5)
-        ttk.Button(root, text="Preview birthday screen",
-                   command=lambda: (root.destroy(), show_greeting())).pack(pady=15)
-        root.mainloop()
+    parser=argparse.ArgumentParser(description="DnyaOS Birthday Edition")
+    parser.add_argument("--preview",action="store_true",help="preview regardless of date")
+    parser.add_argument("--autostart",action="store_true",help="show automatically only on 26 October")
+    args=parser.parse_args()
+    today=datetime.date.today()
+    is_birthday=(today.month,today.day)==(10,26)
+    if args.autostart and not is_birthday:
+        return
+    if not args.preview and not is_birthday:
+        show_locked_screen()
         return
     show_greeting()
 
-def show_greeting():
-    root = tk.Tk()
-    root.title("DnyaOS Birthday Edition")
-    root.geometry("760x440")
-    root.minsize(600, 360)
-    root.configure(bg="#0b1018")
-    tk.Frame(root, bg="#e52b43", height=5).pack(fill="x")
-    tk.Label(root, text="DnyaOS", bg="#0b1018", fg="#55cfff",
-             font=("DejaVu Sans", 16, "bold")).pack(pady=(30, 8))
-    tk.Label(root, text=GREETING, bg="#0b1018", fg="#f2f7ff",
-             font=("DejaVu Sans", 18, "bold"), justify="center",
-             wraplength=700).pack(expand=True, padx=24)
-    tk.Label(root, text="BLUE • BLACK • RED", bg="#0b1018", fg="#e52b43",
-             font=("DejaVu Sans", 10, "bold")).pack(pady=(0, 22))
-    ttk.Button(root, text="Close", command=root.destroy).pack(pady=(0, 18))
-    root.mainloop()
-
-if __name__ == "__main__":
+if __name__=="__main__":
     main()
