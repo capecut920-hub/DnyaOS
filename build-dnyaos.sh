@@ -57,7 +57,7 @@ cp -aL /usr/share/live/build/bootloaders/isolinux config/bootloaders/isolinux
 cp -aL /usr/share/live/build/bootloaders/syslinux_common config/bootloaders/syslinux_common
 cp -aL /usr/share/live/build/bootloaders/syslinux config/bootloaders/syslinux
 
-mkdir -p config/package-lists config/archives config/includes.chroot/etc/skel/Desktop config/includes.chroot/usr/local/bin \
+mkdir -p config/package-lists config/archives config/includes.chroot/etc/skel/Desktop config/includes.chroot/etc/skel/.config/autostart config/includes.chroot/usr/local/bin \
   config/includes.chroot/usr/share/applications \
   config/includes.chroot/usr/share/backgrounds/dnyaos \
   config/includes.chroot/usr/share/themes/DnyaOS/gtk-3.0 \
@@ -69,9 +69,11 @@ cp app/dnyaos-birthday config/includes.chroot/usr/local/bin/dnyaos-birthday
 chmod 0755 config/includes.chroot/usr/local/bin/dnyaos-birthday
 cp app/dnyaos-birthday.desktop app/dnyaos-birthday-preview.desktop config/includes.chroot/usr/share/applications/
 cp app/dnyaos-birthday.desktop app/dnyaos-birthday-preview.desktop config/includes.chroot/etc/skel/Desktop/
+cp app/dnyaos-birthday-autostart.desktop config/includes.chroot/etc/skel/.config/autostart/dnyaos-birthday.desktop
 cp theme/index.theme config/includes.chroot/usr/share/themes/DnyaOS/index.theme
 cp theme/gtk.css config/includes.chroot/usr/share/themes/DnyaOS/gtk-3.0/gtk.css
 cp theme/wallpaper.svg config/includes.chroot/usr/share/backgrounds/dnyaos/wallpaper.svg
+cp theme/ladybug.svg config/includes.chroot/usr/share/pixmaps/dnyaos.svg
 cp theme/xfce4-desktop.xml config/includes.chroot/etc/skel/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml
 cp theme/xsettings.xml config/includes.chroot/etc/skel/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
 cp launchers/*.desktop config/includes.chroot/usr/share/applications/
