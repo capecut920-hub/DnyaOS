@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=DnyaOS Window Effects
+Comment=Enable lightweight shadows and transparency effects
+Exec=picom --config /etc/xdg/picom.conf
+Icon=preferences-desktop
+Terminal=false
+OnlyShowIn=XFCE;
+X-GNOME-Autostart-enabled=true
