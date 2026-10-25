@@ -60,6 +60,7 @@ cp -aL /usr/share/live/build/bootloaders/syslinux config/bootloaders/syslinux
 mkdir -p config/package-lists config/archives config/includes.chroot/etc/skel/Desktop config/includes.chroot/etc/skel/.config/autostart config/includes.chroot/usr/local/bin \
   config/includes.chroot/usr/share/applications \
   config/includes.chroot/usr/share/backgrounds/dnyaos \
+  config/includes.chroot/usr/share/pixmaps \
   config/includes.chroot/usr/share/themes/DnyaOS/gtk-3.0 \
   config/includes.chroot/etc/lightdm \
   config/includes.chroot/etc/skel/.config/xfce4/xfconf/xfce-perchannel-xml
