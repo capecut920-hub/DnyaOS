@@ -14,6 +14,8 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: debian:trixie
+      # live-build must mount /proc and /dev/pts inside its build chroot.
+      options: --privileged
     timeout-minutes: 180
     steps:
       - name: Check out source
