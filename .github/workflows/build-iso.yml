@@ -12,6 +12,8 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    container:
+      image: debian:trixie
     timeout-minutes: 180
     steps:
       - name: Check out source
@@ -19,7 +21,7 @@ jobs:
       - name: Build bootable ISO
         run: |
           chmod +x ./build-dnyaos.sh
-          sudo bash ./build-dnyaos.sh
+          bash ./build-dnyaos.sh
       - name: Validate ISO and checksum
         run: |
           set -euo pipefail
