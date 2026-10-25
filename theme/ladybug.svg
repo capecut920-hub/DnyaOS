@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+<defs><linearGradient id="shell" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ff697a"/><stop offset=".55" stop-color="#e52b43"/><stop offset="1" stop-color="#8d1025"/></linearGradient><linearGradient id="shine" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#ffffff" stop-opacity=".35"/><stop offset="1" stop-color="#ffffff" stop-opacity="0"/></linearGradient></defs>
+<path d="M44 26 34 12M84 26 94 12" fill="none" stroke="#101722" stroke-width="5" stroke-linecap="round"/>
+<path d="M44 28Q64 10 84 28L78 37H50Z" fill="#111a27" stroke="#36cfff" stroke-width="2"/>
+<path d="M64 27C35 27 17 49 17 77c0 25 19 40 47 40s47-15 47-40C111 49 93 27 64 27Z" fill="url(#shell)" stroke="#ff8c99" stroke-width="2.5"/>
+<path d="M64 31V112" stroke="#090d14" stroke-width="5" stroke-linecap="round"/>
+<g fill="#090d14"><ellipse cx="43" cy="53" rx="7" ry="9"/><ellipse cx="85" cy="53" rx="7" ry="9"/><ellipse cx="34" cy="77" rx="7" ry="8"/><ellipse cx="94" cy="77" rx="7" ry="8"/><ellipse cx="47" cy="98" rx="7" ry="8"/><ellipse cx="81" cy="98" rx="7" ry="8"/></g>
+<path d="M34 45Q64 27 94 45" fill="none" stroke="url(#shine)" stroke-width="5" stroke-linecap="round"/>
+<circle cx="43" cy="43" r="4" fill="#fff" opacity=".55"/>
+</svg>
