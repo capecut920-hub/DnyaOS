@@ -49,9 +49,14 @@ lb config \
   --iso-publisher "DnyaOS Project" \
   --iso-volume "DNYAOS_LIVE"
 
-# lb config may reset live-build's boot staging directory. Stage the BIOS
-# boot files after configuration, immediately before lb build consumes them.
-mkdir -p /root/isolinux
+mkdir -p config/package-lists config/archives config/includes.chroot/root/isolinux config/includes.chroot/etc/skel/Desktop config/includes.chroot/usr/local/bin \
+  config/includes.chroot/usr/share/applications \
+  config/includes.chroot/usr/share/backgrounds/dnyaos \
+  config/includes.chroot/usr/share/themes/DnyaOS/gtk-3.0 \
+  config/includes.chroot/etc/skel/.config/xfce4/xfconf/xfce-perchannel-xml
+
+# live-build's syslinux stage looks for these files at /root/isolinux
+# inside its build chroot. Include them in the chroot instead of the host.
 test -s /usr/lib/ISOLINUX/isolinux.bin || {
   echo "Missing /usr/lib/ISOLINUX/isolinux.bin (package: isolinux)" >&2
   exit 1
@@ -60,14 +65,8 @@ test -s /usr/lib/syslinux/modules/bios/vesamenu.c32 || {
   echo "Missing /usr/lib/syslinux/modules/bios/vesamenu.c32 (package: syslinux-common)" >&2
   exit 1
 }
-install -m 0644 /usr/lib/ISOLINUX/isolinux.bin /root/isolinux/isolinux.bin
-install -m 0644 /usr/lib/syslinux/modules/bios/vesamenu.c32 /root/isolinux/vesamenu.c32
-
-mkdir -p config/package-lists config/archives config/includes.chroot/etc/skel/Desktop config/includes.chroot/usr/local/bin \
-  config/includes.chroot/usr/share/applications \
-  config/includes.chroot/usr/share/backgrounds/dnyaos \
-  config/includes.chroot/usr/share/themes/DnyaOS/gtk-3.0 \
-  config/includes.chroot/etc/skel/.config/xfce4/xfconf/xfce-perchannel-xml
+install -m 0644 /usr/lib/ISOLINUX/isolinux.bin config/includes.chroot/root/isolinux/isolinux.bin
+install -m 0644 /usr/lib/syslinux/modules/bios/vesamenu.c32 config/includes.chroot/root/isolinux/vesamenu.c32
 
 cp package-lists/dnyaos.list.chroot config/package-lists/dnyaos.list.chroot
 cp config-templates/dnyaos-security.list.chroot config/archives/dnyaos-security.list.chroot
