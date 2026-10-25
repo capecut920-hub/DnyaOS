@@ -4,6 +4,6 @@ Type=Application
 Name=DnyaOS Birthday Edition
 Comment=Birthday greeting for Dnyanada
 Exec=/usr/local/bin/dnyaos-birthday
-Icon=applications-games
+Icon=dnyaos
 Terminal=false
 Categories=Utility;
