@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=DnyaOS Birthday Greeting
+Comment=Show the birthday greeting automatically on 26 October
+Exec=/usr/local/bin/dnyaos-birthday --autostart
+Icon=dnyaos
+Terminal=false
+OnlyShowIn=XFCE;
