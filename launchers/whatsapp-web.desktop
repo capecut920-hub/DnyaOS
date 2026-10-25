@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=WhatsApp Web
+Comment=Open WhatsApp in Firefox
+Exec=firefox-esr --new-window https://web.whatsapp.com/
+Icon=web-browser
+Terminal=false
+Categories=Network;InstantMessaging;
