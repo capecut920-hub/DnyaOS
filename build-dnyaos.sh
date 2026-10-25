@@ -61,6 +61,7 @@ mkdir -p config/package-lists config/archives config/includes.chroot/etc/skel/De
   config/includes.chroot/usr/share/applications \
   config/includes.chroot/usr/share/backgrounds/dnyaos \
   config/includes.chroot/usr/share/themes/DnyaOS/gtk-3.0 \
+  config/includes.chroot/etc/lightdm \
   config/includes.chroot/etc/skel/.config/xfce4/xfconf/xfce-perchannel-xml
 
 cp package-lists/dnyaos.list.chroot config/package-lists/dnyaos.list.chroot
@@ -74,6 +75,7 @@ cp theme/index.theme config/includes.chroot/usr/share/themes/DnyaOS/index.theme
 cp theme/gtk.css config/includes.chroot/usr/share/themes/DnyaOS/gtk-3.0/gtk.css
 cp theme/wallpaper.svg config/includes.chroot/usr/share/backgrounds/dnyaos/wallpaper.svg
 cp theme/ladybug.svg config/includes.chroot/usr/share/pixmaps/dnyaos.svg
+cp theme/lightdm-gtk-greeter.conf config/includes.chroot/etc/lightdm/lightdm-gtk-greeter.conf
 cp theme/xfce4-desktop.xml config/includes.chroot/etc/skel/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-desktop.xml
 cp theme/xsettings.xml config/includes.chroot/etc/skel/.config/xfce4/xfconf/xfce-perchannel-xml/xsettings.xml
 cp launchers/*.desktop config/includes.chroot/usr/share/applications/
