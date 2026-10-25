@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=DnyaOS Glass Widgets
+Comment=Start the transparent clock and system status widgets
+Exec=conky --config=/etc/xdg/dnyaos-widgets.conf
+Icon=preferences-desktop
+Terminal=false
+OnlyShowIn=XFCE;
+X-GNOME-Autostart-enabled=true
