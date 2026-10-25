@@ -30,20 +30,6 @@ echo "Preparing clean build configuration..."
 mkdir -p out
 lb clean --purge || true
 
-# live-build's purge step may remove /root/isolinux, so stage the BIOS boot
-# files only after cleaning and immediately before configuration/build.
-mkdir -p /root/isolinux
-test -s /usr/lib/ISOLINUX/isolinux.bin || {
-  echo "Missing /usr/lib/ISOLINUX/isolinux.bin (package: isolinux)" >&2
-  exit 1
-}
-test -s /usr/lib/syslinux/modules/bios/vesamenu.c32 || {
-  echo "Missing /usr/lib/syslinux/modules/bios/vesamenu.c32 (package: syslinux-common)" >&2
-  exit 1
-}
-install -m 0644 /usr/lib/ISOLINUX/isolinux.bin /root/isolinux/isolinux.bin
-install -m 0644 /usr/lib/syslinux/modules/bios/vesamenu.c32 /root/isolinux/vesamenu.c32
-
 lb config \
   --mode debian \
   --distribution trixie \
@@ -62,6 +48,20 @@ lb config \
   --iso-application "DnyaOS Live" \
   --iso-publisher "DnyaOS Project" \
   --iso-volume "DNYAOS_LIVE"
+
+# lb config may reset live-build's boot staging directory. Stage the BIOS
+# boot files after configuration, immediately before lb build consumes them.
+mkdir -p /root/isolinux
+test -s /usr/lib/ISOLINUX/isolinux.bin || {
+  echo "Missing /usr/lib/ISOLINUX/isolinux.bin (package: isolinux)" >&2
+  exit 1
+}
+test -s /usr/lib/syslinux/modules/bios/vesamenu.c32 || {
+  echo "Missing /usr/lib/syslinux/modules/bios/vesamenu.c32 (package: syslinux-common)" >&2
+  exit 1
+}
+install -m 0644 /usr/lib/ISOLINUX/isolinux.bin /root/isolinux/isolinux.bin
+install -m 0644 /usr/lib/syslinux/modules/bios/vesamenu.c32 /root/isolinux/vesamenu.c32
 
 mkdir -p config/package-lists config/archives config/includes.chroot/etc/skel/Desktop config/includes.chroot/usr/local/bin \
   config/includes.chroot/usr/share/applications \
