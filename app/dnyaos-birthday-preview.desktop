@@ -4,6 +4,6 @@ Type=Application
 Name=Preview Birthday Screen
 Comment=Preview the DnyaOS birthday greeting any day
 Exec=/usr/local/bin/dnyaos-birthday --preview
-Icon=applications-games
+Icon=dnyaos
 Terminal=false
 Categories=Utility;
