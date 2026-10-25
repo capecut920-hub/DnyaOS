@@ -8,6 +8,10 @@ xfce4-settings
 xfce4-panel
 xfce4-whiskermenu-plugin
 xfce4-goodies
+plank
+picom
+playerctl
+vlc
 xfce4-power-manager
 xfce4-notifyd
 xfce4-screenshooter
