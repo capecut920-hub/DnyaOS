@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=DnyaOS Dock
+Comment=Start the DnyaOS application dock
+Exec=plank
+Icon=applications-other
+Terminal=false
+OnlyShowIn=XFCE;
+X-GNOME-Autostart-enabled=true
