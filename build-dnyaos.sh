@@ -71,6 +71,9 @@ chmod 0755 config/includes.chroot/usr/local/bin/dnyaos-birthday
 cp app/dnyaos-birthday.desktop app/dnyaos-birthday-preview.desktop config/includes.chroot/usr/share/applications/
 cp app/dnyaos-birthday.desktop app/dnyaos-birthday-preview.desktop config/includes.chroot/etc/skel/Desktop/
 cp app/dnyaos-birthday-autostart.desktop config/includes.chroot/etc/skel/.config/autostart/dnyaos-birthday.desktop
+cp app/dnyaos-dock-autostart.desktop app/dnyaos-effects-autostart.desktop config/includes.chroot/etc/skel/.config/autostart/
+mkdir -p config/includes.chroot/etc/xdg
+cp theme/picom.conf config/includes.chroot/etc/xdg/picom.conf
 cp theme/index.theme config/includes.chroot/usr/share/themes/DnyaOS/index.theme
 cp theme/gtk.css config/includes.chroot/usr/share/themes/DnyaOS/gtk-3.0/gtk.css
 cp theme/wallpaper.svg config/includes.chroot/usr/share/backgrounds/dnyaos/wallpaper.svg
